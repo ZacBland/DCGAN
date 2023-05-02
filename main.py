@@ -53,6 +53,8 @@ train_dataset = tf.data.Dataset.from_tensor_slices(tensors=tensor).shuffle(buffe
 #build models
 gen_model = build_generator(latent_dim=LATENT_DIM)
 gen_model.summary()
+tf.keras.utils.plot_model(gen_model, to_file='./generator_plot.png', show_shapes=True)
+
 noise = tf.random.normal([1, LATENT_DIM])
 generated_img = gen_model(noise, training=False)
 #plt.imshow(generated_img[0, :, :, 0])
@@ -60,6 +62,8 @@ generated_img = gen_model(noise, training=False)
 
 dis_model = build_discriminator()
 dis_model.summary()
+
+tf.keras.utils.plot_model(dis_model, to_file='./discriminator_plot.png', show_shapes=True)
 
 decision = dis_model(generated_img)
 print(decision)
@@ -115,13 +119,10 @@ for epoch in range(EPOCHS):
     print()
 
 
-from IPython import display
-display.clear_output(wait=False)
 generate_and_save_images(gen_model,
                          EPOCHS,
                          seed)
 
 checkpoint.restore(tf.train.latest_checkpoint(checkpoint_dir))
-display_image(EPOCHS)
 
 
