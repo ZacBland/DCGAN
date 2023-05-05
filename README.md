@@ -34,11 +34,15 @@ The `main.py` script will train the DCGAN based on the dataset given. This train
 
 ### Generate
 
-There is a function within the `src/` folder called generate. Before running this function, please download the model.zip from this [link](https://drive.google.com/file/d/1tMgNib8BymXr5MGEqTKMfLrfDqobD0Vd/view?usp=sharing) and move model.zip into the root folder of the directory. Then, run the following command:
+There is a function within the `src/` folder called generate. Before running this function, please download the model.zip from this [link](https://drive.google.com/file/d/1tMgNib8BymXr5MGEqTKMfLrfDqobD0Vd/view?usp=sharing) and move model.zip into the root folder of the directory.
+
+There are two functions within `generate.py`, `generate_plot()` and `generate_imgs()`. `generate_plot()` will open a matplotlib plot of a 4x4 grid of newly generated images. `generate_imgs()` will save a specified number of newly generated images to a given folder.
+
+To run these functions, either add one of the following commands to the bottom of the file or run from a seperate file:
 ```
-python src/generate.py
+generate_plot()
+generate_imgs(dir="folder/of/your/choosing", num_of_imgs=7000)
 ```
-This script will be up 16 new images generated from the model. Click anywhere on the window to generate new images.
 
 ## Results
 
